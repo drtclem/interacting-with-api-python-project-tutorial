@@ -1,27 +1,88 @@
-<!-- hide -->
-# Interacting with an API in Python - Step by step guide
-<!-- endhide -->
+# Spotify API Analysis: The Strokes
 
-+ Create a Spotify developer application using the Spotify Developer Portal.
-+ Connect with the Spotify API.
-+ Retrieve and download data from the Spotify API.
-+ Create a Python Pandas dataframe for easier manipulation of the data.
-+ Save the data to an SQL database.
- 
-## 🌱 How to start this project
+An end-to-end data project using the Spotify API to pull, transform, and analyze track data for The Strokes — including a statistical look at whether song duration predicts popularity.
 
-Follow the instructions below:
+## Table of Contents
 
-1. Create a new repository by forking the [Git project](https://github.com/4GeeksAcademy/interacting-with-api-python-project-tutorial) or [by clicking here](https://github.com/4GeeksAcademy/interacting-with-api-python-project-tutorial/fork).
-2. Open the newly created repository in Codespace using the [Codespace button extension](https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository#creating-a-codespace-for-a-repository).
-3. Once the Codespace VSCode has finished opening, start your project by following the instructions below.
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Setup & Configuration](#setup--configuration)
+- [Analysis Workflow](#analysis-workflow)
+- [Key Finding](#key-finding)
+- [Tech Stack](#tech-stack)
+- [Author](#author)
 
-## 🚛 How to deliver this project
+---
 
-Once you have finished solving the exercises, be sure to commit your changes, push them to your repository, and go to 4Geeks.com to upload the repository link.
+## Overview
 
-## 📝 Instructions
+This project connects to the Spotify API via the `Spotipy` Python library to retrieve album and track data for The Strokes. It then explores the relationship between song duration and popularity using scatter plots and linear regression.
 
-Read the contents of the `./INSTRUCTIONS.md` file containing the steps to complete the project, follow them and develop the solution first in `./src/explore.ipynb` for testing and then move the clean code to `./src/app.py`. Be sure to delete the notebook once you no longer need it to keep the project clean and tidy.
+---
 
-> Note: We also incorporated the solution samples on ./src/solution.md that we strongly suggest you only use if you are stuck for more than 30 min or if you have already finished and want to compare it with your approach.
+## Project Structure
+
+
+
+---
+
+## Setup & Configuration
+
+**1. Create a Spotify Developer account**
+
+Go to the [Spotify Developer Dashboard](https://developer.spotify.com/documentation/web-api), log in, and create an application to get your `CLIENT_ID` and `CLIENT_SECRET`.
+
+**2. Install dependencies**
+
+```bash
+pip install spotipy python-dotenv pandas numpy matplotlib scipy
+```
+
+**3. Configure environment variables**
+
+Create a `.env` file in the project root:
+
+
+
+
+---
+
+## Analysis Workflow
+
+**1. Connect to the Spotify API**
+Authenticate using `SpotifyClientCredentials` and initialize the `Spotipy` client.
+
+**2. Pull album and track data**
+Retrieve the full album catalog and top 10 tracks for The Strokes using the artist URI.
+
+**3. Transform the data**
+- Build a Pandas DataFrame from the track dictionaries
+- Convert `duration_ms` to a decimal minutes format
+- Sort by popularity and surface the top 3 tracks
+
+**4. Visualize and model**
+- Scatter plot of duration vs. popularity with a linear regression line overlaid
+- R-value reported to quantify the strength of the relationship
+- Second plot with adjusted axes for a zoomed-out view
+
+---
+
+## Key Finding
+
+There is a weak positive relationship between song duration and popularity for The Strokes' top tracks. Duration alone is not a meaningful predictor of how popular a song will be.
+
+---
+
+## Tech Stack
+
+- Python
+- Spotipy
+- Pandas, NumPy
+- Matplotlib
+- SciPy (linregress)
+
+---
+
+## Author
+
+Taylor Clements, PhD
